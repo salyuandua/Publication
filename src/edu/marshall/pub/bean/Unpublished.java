@@ -1,17 +1,22 @@
+package edu.marshall.pub.bean;
 
-public class Unpublished implements Entry{
-	private String name;
+public class Unpublished extends Entry{
+	public Unpublished(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+	//private String name;
 	private String title;
 	private String[] author;
 	private String month;
 	private String year;
 	private String note;
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 	public String getTitle() {
 		return title;
 	}

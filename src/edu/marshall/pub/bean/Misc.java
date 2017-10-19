@@ -1,15 +1,20 @@
+package edu.marshall.pub.bean;
 
-public class Misc implements Entry{
-private String name;
+public class Misc extends Entry{
+public Misc(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+//private String name;
 private String title;
 private String url;
 private String[] author;
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
+//public String getName() {
+//	return name;
+//}
+//public void setName(String name) {
+//	this.name = name;
+//}
 public String getTitle() {
 	return title;
 }

@@ -1,6 +1,11 @@
+package edu.marshall.pub.bean;
 
-public class Inproceedings implements Entry{
-	private String name;
+public class Inproceedings extends Entry{
+	public Inproceedings(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+	//private String name;
 	private String title;
 	private String shorttitle;
 	private String url;
@@ -28,12 +33,12 @@ public class Inproceedings implements Entry{
 	public void setAbstract(String abstract1) {
 		Abstract = abstract1;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 	public String getTitle() {
 		return title;
 	}

@@ -1,21 +1,40 @@
+package edu.marshall.pub.bootstrap;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import edu.marshall.pub.bean.Article;
+import edu.marshall.pub.bean.Book;
+import edu.marshall.pub.until.OrderedArrayList;
+
 
 
 public class Tes {
 	
 	public static void main(String[] args) {
-		File file=new File("E:\\project1111111\\projectWrite.bib");
-		try {
-			System.out.println(file.createNewFile());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+Class e=Book.class;
+	System.out.println(e.getSimpleName());	
+		
+		
+		
+		
+		//String s="abc";
+//		char a='a';
+//		char b='b';
+//		System.out.println(a+b);
+		//System.out.println((double)5/20);
+		
+		
+//		File file=new File("E:\\project1111111\\projectWrite.bib");
+//		try {
+//			System.out.println(file.createNewFile());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		//System.out.println(file.mkdirs());
 //public static void main(String[] args) {
 //	try {

@@ -1,6 +1,11 @@
+package edu.marshall.pub.bean;
 
-public class Incollection implements Entry{
-	private String name;
+public class Incollection extends Entry{
+
+	public Incollection(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
 	private String title;
 	private String url;
 	private String urldate;
@@ -80,12 +85,12 @@ public class Incollection implements Entry{
 	public void setEditor(String editor) {
 		this.editor = editor;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 	public String getTitle() {
 		return title;
 	}

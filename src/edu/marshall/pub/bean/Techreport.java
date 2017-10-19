@@ -1,6 +1,11 @@
+package edu.marshall.pub.bean;
 
-public class Techreport implements Entry{
-	private String name;
+public class Techreport extends Entry{
+	public Techreport(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+	//private String name;
 	private String title;
 	private String url;
 	private String urldate;
@@ -50,12 +55,12 @@ public class Techreport implements Entry{
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 	public String getTitle() {
 		return title;
 	}

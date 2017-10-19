@@ -1,6 +1,11 @@
+package edu.marshall.pub.bean;
 
-public class Book implements Entry{
-private String name;
+public class Book extends Entry{
+
+public Book(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
 private String address;
 private String url;
 private String urldate;
@@ -63,12 +68,7 @@ public String getNumber() {
 public void setNumber(String number) {
 	this.number = number;
 }
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
+
 public String getAddress() {
 	return address;
 }

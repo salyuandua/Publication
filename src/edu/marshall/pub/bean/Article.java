@@ -1,11 +1,12 @@
+package edu.marshall.pub.bean;
 
-public class Article implements Entry{
+public class Article extends Entry{
 	
-	public Article() {
+
+	public Article(String name) {
+		super(name);
 		// TODO Auto-generated constructor stub
 	}
-	
-	private String name;
 	private String title;
 	private String series;
 	private String address;
@@ -37,12 +38,6 @@ public class Article implements Entry{
 	}
 	public void setNote(String note) {
 		this.note = note;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getTitle() {
 		return title;
