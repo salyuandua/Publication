@@ -9,14 +9,14 @@ public Book(String name) {
 private String address;
 private String url;
 private String urldate;
-private String title;
+
 private String isbn;
 private String shorttitle;
 private String language;
 private String publisher;
 private String[] author;
 private String note;
-private String year;
+
 private String editor;
 private String volume;
 private String number;
@@ -75,12 +75,7 @@ public String getAddress() {
 public void setAddress(String address) {
 	this.address = address;
 }
-public String getTitle() {
-	return title;
-}
-public void setTitle(String title) {
-	this.title = title;
-}
+
 public String getIsbn() {
 	return isbn;
 }
@@ -111,12 +106,7 @@ public String[] getAuthor() {
 public void setAuthor(String[] author) {
 	this.author = author;
 }
-public String getYear() {
-	return year;
-}
-public void setYear(String year) {
-	this.year = year;
-}
+
 public String getNote() {
 	return note;
 }

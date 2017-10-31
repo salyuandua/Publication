@@ -6,7 +6,7 @@ public Phdthesis(String name) {
 		// TODO Auto-generated constructor stub
 	}
 //private String name;
-private String title;
+
 private String type;
 private String Abstract;
 private String shorttitle;
@@ -14,7 +14,7 @@ private String url;
 private String urldate;
 private String school;
 private String[] author;
-private String year;
+
 private String address;
 private String language;
 private String month;
@@ -44,18 +44,7 @@ public String getLanguage() {
 public void setLanguage(String language) {
 	this.language = language;
 }
-//public String getName() {
-//	return name;
-//}
-//public void setName(String name) {
-//	this.name = name;
-//}
-public String getTitle() {
-	return title;
-}
-public void setTitle(String title) {
-	this.title = title;
-}
+
 public String getShorttitle() {
 	return shorttitle;
 }
@@ -86,12 +75,7 @@ public String[] getAuthor() {
 public void setAuthor(String[] author) {
 	this.author = author;
 }
-public String getYear() {
-	return year;
-}
-public void setYear(String year) {
-	this.year = year;
-}
+
 public String getType() {
 	return type;
 }

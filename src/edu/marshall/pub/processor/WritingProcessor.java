@@ -10,6 +10,7 @@ import java.util.Iterator;
 
 import edu.marshall.pub.bean.Entry;
 import edu.marshall.pub.until.OrderedArrayList;
+import edu.marshall.pub.until.OrderedList;
 import edu.marshall.pub.until.Untils;
 
 public class WritingProcessor {
@@ -38,7 +39,7 @@ private BufferedWriter bWriter;
 	
 	
 	
-	public void writeEntries(OrderedArrayList entryList){
+	public void writeEntries(OrderedList entryList){
 		Iterator<Entry> it=	entryList.iterator();
 		try {
 		while(it.hasNext()){

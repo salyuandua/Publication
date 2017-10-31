@@ -7,13 +7,14 @@ import edu.marshall.pub.bean.Entry;
 import edu.marshall.pub.processor.ReadingProcessor;
 import edu.marshall.pub.processor.WritingProcessor;
 import edu.marshall.pub.until.OrderedArrayList;
+import edu.marshall.pub.until.OrderedLinkedList;
+import edu.marshall.pub.until.OrderedList;
 import edu.marshall.pub.until.Untils;
 
 public class Bootstrap {
-public static void main(String[] args) {
-	Scanner sc=new Scanner(System.in);
-	String filePath;
-	
+private static String filePath;	
+private static Scanner sc;	
+private static void checkFilePath(){
 	while(true){
 		System.out.println("Please enter the path of file:");
 		filePath=sc.next();
@@ -22,19 +23,37 @@ public static void main(String[] args) {
 			System.out.println("The file '"+filePath+"' not exists, please try again");
 			
 		}else{
+			return;
+		}
+	}
+}
+public static void main(String[] args) {
+	sc=new Scanner(System.in);
+	checkFilePath();
+	//confirm order model
+	int orderModel=0;
+	while(true){
+		System.out.println("Please select the order you like:\n1. Name Order\n2. year Order\n3. Title Order");
+		orderModel=sc.nextInt();
+		if(orderModel>3||orderModel<1){//unsupported operation
+			System.out.println("Unsupported operation, please enter again");
+		}else{//right operation
+			orderModel--;
 			break;
 		}
 	}
-			//file exists, read
-			System.out.println("Reading...");
-			ReadingProcessor readingProcessor=new ReadingProcessor(filePath);
-			OrderedArrayList entryList=readingProcessor.read();
+			
+			
+			// read file with order model
+			System.out.println("Reading '"+filePath+"'...");
+			ReadingProcessor readingProcessor=new ReadingProcessor(new OrderedLinkedList(orderModel));
+			OrderedList entryList=readingProcessor.read(filePath);
 			System.out.println("**********************************************************************");
 			System.out.println("Reading completed....");
 			System.out.println("Entry numbers: "+entryList.size());
 			System.out.println("**********************************************************************");
 			while(true){
-				System.out.println("Avaliable operations:\nS. Search\nD. Delete\nW. Print\nE. Exit");
+				System.out.println("Avaliable operations:\nS. Search\nD. Delete\nW. Print\nM. Merge\nP. Purge\nE. Exit");
 				String operation=sc.next();
 				if(operation.equals("S")){//search
 					System.out.println("Enter name:");
@@ -83,6 +102,12 @@ public static void main(String[] args) {
 						writingProcessor.writeEntries(entryList);
 						System.out.println("Writing end");
 					}
+				}else if(operation.equals("M")){//merge	
+					checkFilePath();
+					entryList=readingProcessor.read(filePath);
+					System.out.println("Merge successfully!");
+				}else if(operation.equals("P")){//purge
+					
 					
 					
 				}else if(operation.equals("E")){//exit

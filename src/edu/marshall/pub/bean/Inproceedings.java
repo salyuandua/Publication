@@ -6,13 +6,13 @@ public class Inproceedings extends Entry{
 		// TODO Auto-generated constructor stub
 	}
 	//private String name;
-	private String title;
+
 	private String shorttitle;
 	private String url;
 	private String urldate;
 	private String booktitle;
 	private String[] author;
-	private String year;
+
 	private String publisher;
 	private String address;
 	private String editor;
@@ -33,18 +33,7 @@ public class Inproceedings extends Entry{
 	public void setAbstract(String abstract1) {
 		Abstract = abstract1;
 	}
-//	public String getName() {
-//		return name;
-//	}
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -69,12 +58,7 @@ public class Inproceedings extends Entry{
 	public void setAuthor(String[] author) {
 		this.author = author;
 	}
-	public String getYear() {
-		return year;
-	}
-	public void setYear(String year) {
-		this.year = year;
-	}
+
 	public String getPublisher() {
 		return publisher;
 	}

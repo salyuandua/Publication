@@ -7,7 +7,7 @@ public class Article extends Entry{
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
-	private String title;
+
 	private String series;
 	private String address;
 	private String volume;
@@ -18,7 +18,7 @@ public class Article extends Entry{
 	private String urldate;
 	private String[] author;
 	private String month;
-	private String year;
+
 	private String pages;
 	private String language;
 	private String journal;
@@ -39,12 +39,7 @@ public class Article extends Entry{
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+
 	public String getVolume() {
 		return volume;
 	}
@@ -87,12 +82,7 @@ public class Article extends Entry{
 	public void setMonth(String month) {
 		this.month = month;
 	}
-	public String getYear() {
-		return year;
-	}
-	public void setYear(String year) {
-		this.year = year;
-	}
+
 	public String getPages() {
 		return pages;
 	}

@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import edu.marshall.pub.bean.Entry;
 import edu.marshall.pub.until.OrderedArrayList;
+import edu.marshall.pub.until.OrderedList;
 import edu.marshall.pub.until.Untils;
 
 /**
@@ -23,7 +24,7 @@ public class ReadingProcessor {
 private Scanner sc;
 private Class<Entry> claz;
 //private Entry[] entrys=new Entry[20001];
-private OrderedArrayList entryList;
+private OrderedList entryList;
 private Entry entry;
 private Field[] fields;
 
@@ -32,19 +33,13 @@ private String key;
  * 
  * @param filePath The absolute path of existing .bib file 
  */
-	public ReadingProcessor(String filePath) {
-		File file=new File(filePath);
-		try {
-			sc=new Scanner(file);
+	public ReadingProcessor(OrderedList orList) {
+
 			claz=null;
 			entry=null;
-			entryList=new OrderedArrayList(100);
-			
+			entryList=orList;
 			key="";
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 
 	private void createNewEntry(String thisLine){
@@ -97,10 +92,24 @@ private String key;
 	private void processFieldValue(String value){
 		
 	}
+	/**
+	 * create file object and initilize scanner
+	 * @param filePath
+	 * @return
+	 */
+	private boolean createFile(String filePath){
+		File file=new File(filePath);
+		if(!file.exists()){
+			return false;
+		}
+		sc=new Scanner(filePath);
+		return true;
+	}
 	
-	
-	public OrderedArrayList read(){
-		
+	public OrderedList read(String filePath) {
+		if(!createFile(filePath)){
+			return null;
+		}
 		while(sc.hasNext()){
 			String thisLine=sc.nextLine().trim();
 			if(thisLine.startsWith("@")){//entry's beginning

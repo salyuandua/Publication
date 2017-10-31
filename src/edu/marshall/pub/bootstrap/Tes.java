@@ -14,11 +14,11 @@ import edu.marshall.pub.until.OrderedArrayList;
 public class Tes {
 	
 	public static void main(String[] args) {
-
-Class e=Book.class;
-	System.out.println(e.getSimpleName());	
-		
-		
+//		Book b=new Book("book");
+//		b.setTitle("booke");
+//		System.out.println(b.compareTo(null));
+		String year="";
+		System.out.println(Integer.parseInt(year));
 		
 		
 		//String s="abc";

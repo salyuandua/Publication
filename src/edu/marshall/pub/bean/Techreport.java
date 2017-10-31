@@ -6,12 +6,12 @@ public class Techreport extends Entry{
 		// TODO Auto-generated constructor stub
 	}
 	//private String name;
-	private String title;
+
 	private String url;
 	private String urldate;
 	private String institution;
 	private String[] author;
-	private String year;
+
 	private String number;
 	private String address;
 	private String month;
@@ -55,18 +55,7 @@ public class Techreport extends Entry{
 	public void setNumber(String number) {
 		this.number = number;
 	}
-//	public String getName() {
-//		return name;
-//	}
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -91,11 +80,6 @@ public class Techreport extends Entry{
 	public void setAuthor(String[] author) {
 		this.author = author;
 	}
-	public String getYear() {
-		return year;
-	}
-	public void setYear(String year) {
-		this.year = year;
-	}
+
 	
 }

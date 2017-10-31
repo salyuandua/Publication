@@ -6,13 +6,13 @@ public class Incollection extends Entry{
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
-	private String title;
+
 	private String url;
 	private String urldate;
 	private String booktitle;
 	private String publisher;
 	private String[] author;
-	private String year;
+
 	private String pages;
 	private String address;
 	private String editor;
@@ -85,18 +85,8 @@ public class Incollection extends Entry{
 	public void setEditor(String editor) {
 		this.editor = editor;
 	}
-//	public String getName() {
-//		return name;
-//	}
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+
+
 	public String getUrl() {
 		return url;
 	}
@@ -127,12 +117,7 @@ public class Incollection extends Entry{
 	public void setAuthor(String[] author) {
 		this.author = author;
 	}
-	public String getYear() {
-		return year;
-	}
-	public void setYear(String year) {
-		this.year = year;
-	}
+
 	public String getPages() {
 		return pages;
 	}
