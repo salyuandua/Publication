@@ -24,6 +24,16 @@ private int orderModel=Entry.OrderByName;
 		
 	}
 	/**
+	 * rearrange order for 
+	 */
+//	public void reArrange(){
+//		DoubleLinkedNode current=head;
+//		while(current!=null){
+//			
+//		}
+//	}
+	
+	/**
 	 * get entry by index
 	 * @param index
 	 * @return
@@ -63,14 +73,18 @@ private int orderModel=Entry.OrderByName;
 		
 		element.setOrder(orderModel);
 		//title or year not exist
-		if((element.getOrder()==Entry.OrderByTitle&&element.getTitle().trim().equals(""))
-				||(element.getOrder()==Entry.OrderByYear&&element.getYear().trim().equals("0"))){
-			element.setOrder(Entry.ignoreOrder);
-		}
-		
-		
-		
-		if(orderModel==Entry.ignoreOrder||count==0){//no order needed or empty set
+//		if((element.getOrder()==Entry.OrderByTitle&&element.getTitle().trim().equals(""))
+//				||(element.getOrder()==Entry.OrderByYear&&element.getYear().trim().equals("0"))){
+//			element.setOrder(Entry.ignoreOrder);
+//		}
+//		
+//		
+//		
+//		if(orderModel==Entry.ignoreOrder||count==0){//no order needed or empty set
+//			addLast(element);
+//			return;
+//		}
+		if(count==0){//no order needed or empty set
 			addLast(element);
 			return;
 		}
@@ -79,12 +93,15 @@ private int orderModel=Entry.OrderByName;
 		
 
 		while(current!=null){
-			//equal and replace
-			if(element.compareTo(current.getElement())==0){
+			//equal and replace if names are same
+//			if(element.compareTo(current.getElement())==0&&element.getOrder()==Entry.OrderByName){
+//				current.element=element;
+//				return;
+//			}	
+			if(element.getName().equals(current.getElement().getName())){
 				current.element=element;
 				return;
-			}	
-			
+			}
 			//current is last one
 			if(current.next==null){
 				if(element.compareTo(current.getElement())>0){
@@ -101,7 +118,7 @@ private int orderModel=Entry.OrderByName;
 			}
 			
 
-			if((element.compareTo(current.element)>0)&&(element.compareTo(current.next.element)<0)){
+			if((element.compareTo(current.element)>=0)&&(element.compareTo(current.next.element)<0)){
 				//insert new node between current and current's next
 				DoubleLinkedNode newNode=new DoubleLinkedNode(element, current, current.next);
 				
@@ -171,6 +188,7 @@ private int orderModel=Entry.OrderByName;
 				}else{
 					currentNode.previous.next=currentNode.next;
 					currentNode.next.previous=currentNode.previous;
+					count--;
 					return e;
 				}
 				
@@ -448,7 +466,7 @@ private int orderModel=Entry.OrderByName;
 		Book book2=new Book("book2");
 		book2.setYear("200");
 		Book book3=new Book("book3");
-		book3.setYear("4000");
+		//book3.setYear("4000");
 		//book3.setOrder(2);
 		Book book4=new Book("book4");
 		book4.setYear("14000");
@@ -460,9 +478,9 @@ private int orderModel=Entry.OrderByName;
 		l.add(book3);
 		l.add(book2);
 		System.out.println(l.toString());
-		System.out.println(l.search("book9"));
-		System.out.println(l.remove("book9"));
-		System.out.println(l.toString());
+//		System.out.println(l.search("book9"));
+//		System.out.println(l.remove("book9"));
+//		System.out.println(l.toString());
 		
 	}
 

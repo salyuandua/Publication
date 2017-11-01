@@ -45,6 +45,9 @@ public class Entry implements Comparable<Entry>{
 	 * 
 	 */
 	public int compareTo(Entry o) throws NullPointerException{
+		if(o.order==ignoreOrder){
+			return -1;
+		}
 		if(order==OrderByName){//compare by name
 			if(this.name==null||o.getName()==null){
 				throw new NullPointerException("Name of entry is null");
@@ -52,7 +55,6 @@ public class Entry implements Comparable<Entry>{
 			return name.compareTo(o.getName());
 		}else if(order==OrderByTitle){//compare by title
 			return title.compareTo(o.getTitle());
-			
 			
 		}else{//compare by year
 			//return year.compareTo(o.getYear());

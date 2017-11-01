@@ -1,6 +1,9 @@
 package edu.marshall.pub.processor;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -21,7 +24,8 @@ import edu.marshall.pub.until.Untils;
 
 
 public class ReadingProcessor {
-private Scanner sc;
+//private Scanner sc;
+	private BufferedReader sc;
 private Class<Entry> claz;
 //private Entry[] entrys=new Entry[20001];
 private OrderedList entryList;
@@ -102,7 +106,13 @@ private String key;
 		if(!file.exists()){
 			return false;
 		}
-		sc=new Scanner(filePath);
+		try {
+			sc=new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//sc=new Scanner(filePath);
 		return true;
 	}
 	
@@ -110,56 +120,62 @@ private String key;
 		if(!createFile(filePath)){
 			return null;
 		}
-		while(sc.hasNext()){
-			String thisLine=sc.nextLine().trim();
-			if(thisLine.startsWith("@")){//entry's beginning
-				createNewEntry(thisLine);
-			}else if(thisLine.trim().equals("")||thisLine==null||thisLine.equals("}")){// no information row
+		String thisLine=null;
+		try {
+			while((thisLine=sc.readLine())!=null){
+				//String thisLine=sc.nextLine().trim();
+				if(thisLine.startsWith("@")){//entry's beginning
+					createNewEntry(thisLine);
+				}else if(thisLine.trim().equals("")||thisLine==null||thisLine.equals("}")){// no information row
 
-				
-			}else{//read fields
-				String value="";
-				if(thisLine.contains("=")){//the beginning of the field like 'title=value' 
-					String[] strArray=thisLine.split("=");
-					if(strArray[0].trim().length()<=15){//another key
-						//prepare key and value
-							key=strArray[0].trim();
-							value=strArray[1].trim();
-//							if(value.startsWith("{")){//reomve '{'
-//								value=value.substring(1);
-//							}
-							
-					}else{
+					
+				}else{//read fields
+					String value="";
+					if(thisLine.contains("=")){//the beginning of the field like 'title=value' 
+						String[] strArray=thisLine.split("=");
+						if(strArray[0].trim().length()<=15){//another key
+							//prepare key and value
+								key=strArray[0].trim();
+								value=strArray[1].trim();
+							if(value.startsWith("{")){//reomve '{'
+								value=value.substring(1);
+							}
+								
+						}else{
+							value=(String) getter(key);//get current value
+							value=value+" "+thisLine;//build new value
+						}
+					}else{//not the beginning of the field
 						value=(String) getter(key);//get current value
 						value=value+" "+thisLine;//build new value
+						
 					}
-				}else{//not the beginning of the field
-					value=(String) getter(key);//get current value
-					value=value+" "+thisLine;//build new value
-					
-				}
-				//System.out.println("oldVal :"+value);
-				//remove possible '}' and ','
-				if(value.charAt(value.length()-1)==','&&value.charAt(value.length()-2)=='}'){//the end of this field contains ','
-					value=value.substring(0, value.length()-2);
-					
-				}else if(value.charAt(value.length()-1)=='}'){//the end of this field not contains ','
-					value=value.substring(0, value.length()-1);
-				}
-				//System.out.println("newVal :"+value);
-				//process author array
-					if(key.equals("author")){
-						String[] authors=value.split(" and "); 
-						setter(key, authors);
-					}else{
-						setter(key, value);
+					//System.out.println("oldVal :"+value);
+					//remove possible '}' and ','
+					if(value.charAt(value.length()-1)==','&&value.charAt(value.length()-2)=='}'){//the end of this field contains ','
+						value=value.substring(0, value.length()-2);
+						
+					}else if(value.charAt(value.length()-1)=='}'){//the end of this field not contains ','
+						value=value.substring(0, value.length()-1);
 					}
+					//System.out.println("newVal :"+value);
+					//process author array
+						if(key.equals("author")){
+							String[] authors=value.split(" and "); 
+							setter(key, authors);
+						}else{
+							setter(key, value);
+						}
+				}
 			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		if(entry!=null){//probably this is end of the file
 			entryList.add(entry);
 		}
-		sc.close();
+		//sc.close();
 		return entryList;
 	}
 	
@@ -167,7 +183,8 @@ private String key;
 	private Object getter(String key){
 		Object o=null;
 		try {
-			Method getter=claz.getDeclaredMethod("get"+Untils.FirstChar2Up(key));
+			System.out.println("get"+Untils.FirstChar2Up(key));
+			Method getter=claz.getMethod("get"+Untils.FirstChar2Up(key));
 			o=getter.invoke(entry);
 		}  catch (SecurityException e) {
 			// TODO Auto-generated catch block
@@ -198,7 +215,7 @@ private String key;
 			if(key.equals("author")){
 				fieldType=String[].class;
 			}
-			Method setter=claz.getDeclaredMethod("set"+Untils.FirstChar2Up(key), fieldType);
+			Method setter=claz.getMethod("set"+Untils.FirstChar2Up(key), fieldType);
 			setter.invoke(entry, value);
 		}  catch (SecurityException e) {
 			// TODO Auto-generated catch block

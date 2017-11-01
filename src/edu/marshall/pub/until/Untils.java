@@ -49,7 +49,7 @@ public static String entryToString(Entry entry){
 	for(Field field:fields){
 		String key=field.getName().toLowerCase();
 		//System.out.println("Key is :"+key);
-		Method getter=clz.getDeclaredMethod("get"+Untils.FirstChar2Up(key));//getter
+		Method getter=clz.getMethod("get"+Untils.FirstChar2Up(key));//getter
 		Object value=getter.invoke(entry);
 
 		if(!key.equals("name")&&value!=null){//name field has been written. 

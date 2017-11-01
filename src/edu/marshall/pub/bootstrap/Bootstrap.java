@@ -1,19 +1,19 @@
 package edu.marshall.pub.bootstrap;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import edu.marshall.pub.bean.Entry;
 import edu.marshall.pub.processor.ReadingProcessor;
 import edu.marshall.pub.processor.WritingProcessor;
-import edu.marshall.pub.until.OrderedArrayList;
 import edu.marshall.pub.until.OrderedLinkedList;
 import edu.marshall.pub.until.OrderedList;
 import edu.marshall.pub.until.Untils;
 
 public class Bootstrap {
 private static String filePath;	
-private static Scanner sc;	
+private static Scanner sc=new Scanner(System.in);	
 private static void checkFilePath(){
 	while(true){
 		System.out.println("Please enter the path of file:");
@@ -28,7 +28,7 @@ private static void checkFilePath(){
 	}
 }
 public static void main(String[] args) {
-	sc=new Scanner(System.in);
+	
 	checkFilePath();
 	//confirm order model
 	int orderModel=0;
@@ -105,11 +105,22 @@ public static void main(String[] args) {
 				}else if(operation.equals("M")){//merge	
 					checkFilePath();
 					entryList=readingProcessor.read(filePath);
-					System.out.println("Merge successfully!");
+					System.out.println("Merge successfully! List size:"+entryList.size());
 				}else if(operation.equals("P")){//purge
-					
-					
-					
+					checkFilePath();
+					ReadingProcessor readingProcessor2=new ReadingProcessor(new OrderedLinkedList(Entry.ignoreOrder));
+					OrderedList newEntryList=readingProcessor2.read(filePath);//entry list from new bib file
+					Iterator<Entry> it=newEntryList.iterator();
+					while(it.hasNext()){
+						String entryName=it.next().getName();
+						Entry e=entryList.remove(entryName);
+						if(e==null){//entry not exists, display message
+							System.out.println("The entry(name: "+entryName+") is not found");
+						}else{
+							System.out.println("The entry(name: "+entryName+") is pueged successfully!");
+						}
+					}
+					System.out.println("Entry size:"+entryList.size());
 				}else if(operation.equals("E")){//exit
 					System.out.println("Bye");
 					break;

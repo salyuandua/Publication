@@ -14,11 +14,25 @@ import edu.marshall.pub.until.OrderedArrayList;
 public class Tes {
 	
 	public static void main(String[] args) {
-//		Book b=new Book("book");
-//		b.setTitle("booke");
-//		System.out.println(b.compareTo(null));
-		String year="";
-		System.out.println(Integer.parseInt(year));
+		Book b=new Book("book");
+		
+		try {
+			Class c=Class.forName("edu.marshall.pub.bean.Book");
+			c.getMethod("getTitle");
+//			Method m=c.getDeclaredMethod("getTitle");
+////			for(Method m1:c.getMethods()){
+////				System.out.println(m1.getName());
+////			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		//String s="abc";
